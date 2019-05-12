@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.app {
+  width: 500px;
+  height: 560px;
+}
+
+.app img {
+  width: 100px;
+  height: 140px;
+}
+

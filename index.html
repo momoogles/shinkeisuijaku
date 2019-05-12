@@ -3,36 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>神経衰弱</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel = "stylesheet" href = "css/style.css" type = "text/css">
+    <link rel="stylesheet" href="css/config.css" type = "text/css">
+    <script src = "index.js"></script>
 </head>
 <body>
-    <img id = "mypic" onclick = "slideshow()" src="images/card_back.png" width = "136px" height = "200px">
-    <img id = "mypic1" onclick = "slideshow1()" src="images/card_back.png" width = "136px" height = "200px">
-    <script>
-    var pics_src = new Array("images/card_back.png","images/card_spade_01.png");
-    var pics_src2 = new Array("images/card_back.png","images/card_spade_02.png");
-    var num1 = 0;
-    var num2 = 0;
-
-    function slideshow(){
-        if (num1 == 1) {
-            num1 = 0;
-        }
-        else {
-            num1 ++;
-        }
-        document.getElementById("mypic").src = pics_src[num1];
-    }
-
-    function slideshow1(){
-        if (num2 == 1) {
-            num2 = 0;
-        }
-        else {
-            num2 ++;
-        }
-        document.getElementById("mypic1").src = pics_src2[num2];
-    }
-    </script>
-    </body>
+    <div class = content>
+        <div class = app>
+            <img id = "1card0" onclick = "turn1(0)" src="images/card_back.png" class = "group1">
+            <img id = "1card1" onclick = "turn1(1)" src="images/card_back.png" class = "group1">
+            <img id = "1card2" onclick = "turn1(2)" src="images/card_back.png" class = "group1">
+            <img id = "1card3" onclick = "turn1(3)" src="images/card_back.png" class = "group1">
+            <img id = "1card4" onclick = "turn1(4)" src="images/card_back.png" class = "group1">
+            <img id = "1card5" onclick = "turn1(5)" src="images/card_back.png" class = "group1">
+            <img id = "1card6" onclick = "turn1(6)" src="images/card_back.png" class = "group1">
+            <img id = "1card7" onclick = "turn1(7)" src="images/card_back.png" class = "group1">
+            <img id = "1card8" onclick = "turn1(8)" src="images/card_back.png" class = "group1">
+            <img id = "1card9" onclick = "turn1(9)" src="images/card_back.png" class = "group1">
+            <img id = "2card0" onclick = "turn1(10)" src="images/card_back.png" class = "group2">
+            <img id = "2card1" onclick = "turn1(11)" src="images/card_back.png" class = "group2">
+            <img id = "2card2" onclick = "turn1(12)" src="images/card_back.png" class = "group2">
+            <img id = "2card3" onclick = "turn1(13)" src="images/card_back.png" class = "group2">
+            <img id = "2card4" onclick = "turn1(14)" src="images/card_back.png" class = "group2">
+            <img id = "2card5" onclick = "turn1(15)" src="images/card_back.png" class = "group2">
+            <img id = "2card6" onclick = "turn1(16)" src="images/card_back.png" class = "group2">
+            <img id = "2card7" onclick = "turn1(17)" src="images/card_back.png" class = "group2">
+            <img id = "2card8" onclick = "turn1(18)" src="images/card_back.png" class = "group2">
+            <img id = "2card9" onclick = "turn1(19)" src="images/card_back.png" class = "group2">
+        </div>
+    </div>
 </html>
