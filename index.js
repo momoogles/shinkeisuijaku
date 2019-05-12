@@ -29,8 +29,8 @@ let y6 = 0;
 let y7 = 0;
 let y8 = 0;
 let y9 = 0;
-var arr1 = [x0, x1, x2, x3, x4, x5, x6, x7, x8, x9];
-var arr2 = [y0, y1, y2 ,y3, y4, y5, y6, y7, y8, y9];
+let arr1 = [x0, x1, x2, x3, x4, x5, x6, x7, x8, x9];
+let arr2 = [y0, y1, y2 ,y3, y4, y5, y6, y7, y8, y9];
 console.log(arr1);
 
 function turn1(N) {
@@ -42,7 +42,7 @@ function turn1(N) {
             B = `images/random/card_spade_${num1}.png`;
             C = `1card${num1}`;
             E = arr1[num]
-            var card_src = [A, B];
+            let card_src = [A, B];
 
             if(E == 1) {
                 E = 0;
@@ -57,7 +57,7 @@ function turn1(N) {
             B = `images/random/card_spade_${num1}.png`;
             C = `2card${num1}`
             E = arr2[num1]
-            var card_src = [A, B];
+            let card_src = [A, B];
             if(E == 1) {
                 E = 0;
             }
@@ -76,7 +76,7 @@ function turn1(N) {
                 B = `images/random/card_spade_${num2}.png`;
                 D = `1card${num2}`
                 F = arr1[num2]
-                var card_src = [A, B];
+                let card_src = [A, B];
                 if(F == 1) {
                     F = 0;
                 }
@@ -90,7 +90,7 @@ function turn1(N) {
                 B = `images/random/card_spade_${num2}.png`;
                 D = `2card${num2}`
                 F = arr2[num2]
-                var card_src = [A, B];
+                let card_src = [A, B];
                 if(F == 1) {
                     F = 0;
                 }
