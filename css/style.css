@@ -1,8 +1,36 @@
 @charset "UTF-8";
 
+body {
+  color: black;
+  background-color: #ffffff;
+  background-size: cover;
+  background-attachment: fixed;
+
+}
+
+.header {
+  width: 750px;
+  margin: auto;
+}
+
+.header h1 {
+  text-align: center;
+}
+.content {
+  background-color: #ffffff;
+  border: 5px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 750px;
+  height: 650px;
+}
+
 .app {
+  margin: auto 0 auto auto;
   width: 500px;
-  height: 560px;
+  height: 600px;
 }
 
 .app img {
@@ -10,3 +38,28 @@
   height: 140px;
 }
 
+.menu {
+  flex-direction: column;
+  width: 150px;
+  height: 600px;
+  margin: auto auto auto 0;
+}
+
+.btn { 
+  margin: auto;
+  text-align: center;
+  text-decoration: none;
+  background-color: #e95935;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 70px;
+  width: 100px;
+  border: 2px solid #e95935;
+  border-radius: 10px;
+} 
+
+.btn:hover{
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #e95935;
+}

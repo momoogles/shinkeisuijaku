@@ -84,7 +84,7 @@ function turn1(N) {
                     F ++;
                 }
                 document.getElementById(D).src = card_src[F]
-                Baka =0;
+                Baka ++;
             } else if(N >= 10) {
                 num2 = N - 10;
                 B = `images/random/card_spade_${num2}.png`;
@@ -98,19 +98,21 @@ function turn1(N) {
                     F ++;
                 }
                 document.getElementById(D).src = card_src[F]
-                Baka =0;
-            }
-            if(num1 == num2) {
-                console.log(true);
-                document.getElementById(C).onclick = "";
-                document.getElementById(D).onclick = "";
-            } else {
-                console.log(false);
-                E = 0;
-                F = 0;
-                document.getElementById(C).src = A;
-                document.getElementById(D).src = A;
+                Baka ++;
             }
         }
+    } else if(Baka == 2) {
+        if(num1 == num2) {
+            console.log(true);
+            document.getElementById(C).onclick = "";
+            document.getElementById(D).onclick = "";
+        } else {
+            console.log(false);
+            E = 0;
+            F = 0;
+            document.getElementById(C).src = A;
+            document.getElementById(D).src = A;
+        }
+        Baka=0;
     }
 }
