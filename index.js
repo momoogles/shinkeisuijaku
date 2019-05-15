@@ -1,118 +1,104 @@
-let N = 0;
-let num = 0;
-let num1 = 0;
-let num2 = 0;
-let Baka = 0;
-let A = "";
-let B = "";
-let C = "";
-let D = "";
-let E = 0;
-let F = 0;
-let x0 = 0;
-let x1 = 0;
-let x2 = 0;
-let x3 = 0;
-let x4 = 0;
-let x5 = 0;
-let x6 = 0;
-let x7 = 0;
-let x8 = 0;
-let x9 = 0;
-let y0 = 0;
-let y1 = 0;
-let y2 = 0;
-let y3 = 0;
-let y4 = 0;
-let y5 = 0;
-let y6 = 0;
-let y7 = 0;
-let y8 = 0;
-let y9 = 0;
-let arr1 = [x0, x1, x2, x3, x4, x5, x6, x7, x8, x9];
-let arr2 = [y0, y1, y2 ,y3, y4, y5, y6, y7, y8, y9];
-console.log(arr1);
+let A, B, C, D;
+let imgswich1 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+let imgswich2 = [0, 0, 0 ,0, 0, 0, 0, 0, 0];
+let imgnum = imgswich1.length;
 
-function turn1(N) {
-    A = "images/card_back.png";
-    if(Baka == 0) {
-        num = N;
-        if(N < 10) {
+function start() {
+    for (let cnt = 0; cnt <= (imgnum - 1); cnt ++) {
+        A = `1card${cnt}`;
+        B = `turn(${cnt})`;
+        document.getElementById(A).onclick = new Function (`${B};`);
+        C = `2card${cnt}`
+        D = `turn(${cnt + imgnum})`
+        document.getElementById(C).onclick = new Function (`${D};`);
+    }
+    document.getElementById("btn-main").onclick = new Function(";");
+    document.getElementById("btn-main").textContent = "RESET";
+}
+
+let cf, chid1, chid2, num, num1, num2, f1, f2;
+let flag = 0;
+let cb = "images/card_back.png";
+
+function turn(N) {
+    if(flag == 0) {
+        if(N < imgnum) {
+            num = N;
             num1 = N;
-            B = `images/random/card_spade_${num1}.png`;
-            C = `1card${num1}`;
-            E = arr1[num]
-            let card_src = [A, B];
-
-            if(E == 1) {
-                E = 0;
+            cf = `images/random/card_spade_${num1}.png`;
+            chid1 = `1card${num1}`;
+            f1 = imgswich1[num]
+            card_src = [cb, cf];
+            if(f1 == 1) {
+                f1 = 0;
             }
             else {
-                E ++;
+                f1 ++;
             }
-            document.getElementById(C).src = card_src[E]
-            Baka ++;
-        } else if(N >= 10) {
-            num1 = N - 10;
-            B = `images/random/card_spade_${num1}.png`;
-            C = `2card${num1}`
-            E = arr2[num1]
-            let card_src = [A, B];
-            if(E == 1) {
-                E = 0;
+            document.getElementById(chid1).src = card_src[f1]
+            flag ++;
+        } else if(N >= imgnum) {
+            num1 = N - imgnum;
+            console.log(num1)
+            cf = `images/random/card_spade_${num1}.png`;
+            chid1 = `2card${num1}`
+            f1 = imgswich2[num1]
+            card_src = [cb, cf];
+            if(f1 == 1) {
+                f1 = 0;
             }
             else {
-                E ++;
+                f1 ++;
             }
-            document.getElementById(C).src = card_src[E]
-            Baka ++;
+            document.getElementById(chid1).src = card_src[f1]
+            flag ++;
         }
-    } else if(Baka == 1) {
+    } else if(flag == 1) {
         if(N == num) {
             ;
         } else {
-            if(N <10) {
+            if(N < imgnum) {
                 num2 = N;
-                B = `images/random/card_spade_${num2}.png`;
-                D = `1card${num2}`
-                F = arr1[num2]
-                let card_src = [A, B];
-                if(F == 1) {
-                    F = 0;
+                cf = `images/random/card_spade_${num2}.png`;
+                chid2 = `1card${num2}`
+                f2 = imgswich1[num2]
+                card_src = [cb, cf];
+                if(f2 == 1) {
+                    f2 = 0;
                 }
                 else {
-                    F ++;
+                    f2 ++;
                 }
-                document.getElementById(D).src = card_src[F]
-                Baka ++;
-            } else if(N >= 10) {
-                num2 = N - 10;
-                B = `images/random/card_spade_${num2}.png`;
-                D = `2card${num2}`
-                F = arr2[num2]
-                let card_src = [A, B];
-                if(F == 1) {
-                    F = 0;
+                document.getElementById(chid2).src = card_src[f2]
+                flag ++;
+            } else if(N >= imgnum) {
+                num2 = N - imgnum;
+                cf = `images/random/card_spade_${num2}.png`;
+                chid2 = `2card${num2}`
+                f2 = imgswich2[num2]
+                card_src = [cb, cf];
+                if(f2 == 1) {
+                    f2 = 0;
                 }
                 else {
-                    F ++;
+                    f2 ++;
                 }
-                document.getElementById(D).src = card_src[F]
-                Baka ++;
+                document.getElementById(chid2).src = card_src[f2]
+                flag ++;
             }
         }
-    } else if(Baka == 2) {
+    } else if(flag == 2) {
         if(num1 == num2) {
             console.log(true);
-            document.getElementById(C).onclick = "";
-            document.getElementById(D).onclick = "";
+            document.getElementById(chid1).onclick = new Function(";");
+            document.getElementById(chid2).onclick = new Function(";");
         } else {
             console.log(false);
-            E = 0;
-            F = 0;
-            document.getElementById(C).src = A;
-            document.getElementById(D).src = A;
+            f1 = 0;
+            f2 = 0;
+            document.getElementById(chid1).src = cb;
+            document.getElementById(chid2).src = cb;
         }
-        Baka=0;
+        flag=0;
     }
 }

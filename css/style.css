@@ -21,16 +21,16 @@ body {
   border: 5px solid black;
   border-radius: 10px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin: auto;
-  width: 750px;
+  width: 700px;
   height: 650px;
 }
 
 .app {
-  margin: auto 0 auto auto;
-  width: 500px;
-  height: 600px;
+  margin: 50px auto 0;
+  width: 600px;
+  height: 450px;
 }
 
 .app img {
@@ -39,27 +39,58 @@ body {
 }
 
 .menu {
-  flex-direction: column;
-  width: 150px;
-  height: 600px;
-  margin: auto auto auto 0;
+  display: flex;
+  flex-direction: row;
+  width: 600px;
+  height: 100px;
+  margin: 20px auto 50px;
 }
 
-.btn { 
-  margin: auto;
+#btn-main { 
   text-align: center;
   text-decoration: none;
   background-color: #e95935;
   color: #ffffff;
   font-size: 24px;
-  line-height: 70px;
-  width: 100px;
+  line-height: 76px;
+  height: 76px;
+  width: 96px;
   border: 2px solid #e95935;
   border-radius: 10px;
 } 
 
-.btn:hover{
+#btn-main:hover {
   text-decoration: none;
   background-color: #ffffff;
   color: #e95935;
+}
+
+.area-info {
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  width: 446px;
+  height: 76px;
+  border: 2px solid #e95935;
+  border-radius: 10px;
+  margin: 0 15px;
+}
+
+.area-score {
+  width: 150px;
+  height: 76px;
+  border-right: 1px solid #e95935
+}
+
+.area-score h2 {
+  font-size: 18px;
+}
+
+.area-guide {
+  width: 350px;
+}
+
+.area-guide h2 {
+  font-size: 18px
 }
