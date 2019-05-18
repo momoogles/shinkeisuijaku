@@ -84,7 +84,11 @@ body {
 }
 
 .area-score h2 {
-  font-size: 18px;
+  font-size: 16px;
+}
+
+.area-score p {
+  margin: auto 0;
 }
 
 .area-guide {
@@ -92,5 +96,9 @@ body {
 }
 
 .area-guide h2 {
-  font-size: 18px
+  font-size: 16px;
+}
+
+.area-guide p {
+  line-height: 20px;
 }
