@@ -5,20 +5,16 @@
     <title>神経衰弱</title>
     <link rel = "stylesheet" href = "css/config.css" type = "text/css">
     <link rel = "stylesheet" href = "css/style.css" type = "text/css">
-    <script src = "../reserch_object/index.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kosugi+Maru&display=swap" rel="stylesheet">
 </head>
-<body onload = "reset()">
-    <div class = header>
-        <h1>ぴよぴよ神経衰弱</h1>
-    </div>
-    <div class = "content">
-        <div class = "app">
-            <img id = "1card0" onclick = "turn(1)" src="images/card_back.png"><img id = "1card1" onclick = ";" src="images/card_back.png"><img id = "1card2" onclick = ";" src="images/card_back.png"><img id = "1card3" onclick = ";" src="images/card_back.png"><img id = "1card4" onclick = ";" src="images/card_back.png"><img id = "1card5" onclick = ";" src="images/card_back.png">
-            <img id = "1card6" onclick = ";" src="images/card_back.png"><img id = "1card7" onclick = ";" src="images/card_back.png"><img id = "1card8" onclick = ";" src="images/card_back.png"><img id = "2card0" onclick = ";" src="images/card_back.png"><img id = "2card1" onclick = ";" src="images/card_back.png"><img id = "2card2" onclick = ";" src="images/card_back.png">
-            <img id = "2card3" onclick = ";" src="images/card_back.png"><img id = "2card4" onclick = ";" src="images/card_back.png"><img id = "2card5" onclick = ";" src="images/card_back.png"><img id = "2card6" onclick = ";" src="images/card_back.png"><img id = "2card7" onclick = ";" src="images/card_back.png"><img id = "2card8" onclick = ";" src="images/card_back.png">
-            <!-- <img id = "2card8" onclick = ";" src="images/card_back.png"><img id = "2card9" onclick = ";" src="images/card_back.png"> -->
-        </div>
-        <div class = "menu" >
+<body>
+    <header>
+        <div class = "icon">ぴよぴよ神経衰弱</div>
+    </header>
+    <main class = "content">
+        <section id = "app">
+        </section>
+        <sedtion class = "menu" >
             <div class = "area-info">
                 <div class = "area-score">
                     <h2>SCORE</h2>
@@ -30,7 +26,8 @@
                 </div>
             </div>
             <div id = "btn-main" onclick = start()>START</div>
-        </div>
-    </div>
+        </section>
+    </main>
+    <script type="module" src="./index.js"></script>
 </body>
 </html>
