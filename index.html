@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>神経衰弱</title>
-    <link rel = "stylesheet" href = "css/config.css" type = "text/css">
-    <link rel = "stylesheet" href = "css/style.css" type = "text/css">
-    <link href="https://fonts.googleapis.com/css?family=Kosugi+Maru&display=swap" rel="stylesheet">
-</head>
-<body>
-
+    <link rel="stylesheet" href="css/config.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kosugi+Maru&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <header>
-
-        <div class = "icon">ぴよぴよ神経衰弱</div>
-
+      <div class="icon">ぴよぴよ神経衰弱</div>
     </header>
 
-    <main class = "content">
+    <main class="content">
+      <section id="app"></section>
 
-        <section id = "app"></section>
-
-        <section class = "menu" >
-            <div class = "area-info">
-                <div class = "area-score">
-                    <h2>SCORE</h2>
-                    <p id = "score">未実装</p>
-                </div>
-                <div class = "area-guide">
-                    <h2>GUIDE</h2>
-                    <p id = "guide">STARTをClick!</p>
-                </div>
-            </div>
-            <div id = "btn-main" onclick = startGame()>START</div>
-        </section>
-
+      <section class="menu">
+        <div class="area-info">
+          <div class="area-score">
+            <h2>SCORE</h2>
+            <p id="score">未実装</p>
+          </div>
+          <div class="area-guide">
+            <h2>GUIDE</h2>
+            <p id="guide">STARTをClick!</p>
+          </div>
+        </div>
+        <div id="btn-main" onclick="startGame()">START</div>
+      </section>
     </main>
 
     <script type="module" src="./index.js"></script>
-</body>
+  </body>
 </html>

@@ -44,10 +44,7 @@ const makeCard = (name, key) => {
 const openCard = card_key => {
   const card_info = game_info.cards_info[card_key];
 
-  card_info.element.div.replaceChild(
-    card_info.element.img_front,
-    card_info.element.img_back
-  );
+  card_info.element.div.replaceChild(card_info.element.img_front, card_info.element.img_back);
 
   card_info.state = CARD_STATE.FRONT;
 };
@@ -122,31 +119,20 @@ const turnCard = card_key => {
         game_info.judge_info.card2_key = card_key;
         game_info.state_info = GAME_STATE.JUDGE;
 
-        switch (
-          judgeCard(
-            game_info.judge_info.card1_key,
-            game_info.judge_info.card2_key
-          )
-        ) {
+        switch (judgeCard(game_info.judge_info.card1_key, game_info.judge_info.card2_key)) {
           case JUDGE_STATE.CORRECT:
             NODE.GUIDE.textContent = GUIDE_STATE.CORRECT;
 
-            /*hideCard(
-              game_info.judge_info.card1_key,
-              game_info.judge_info.card2_key
-            ).then(() => {
-              const cards_state = game_info.cards_info.map(card => {
-                return card.state;
-              });*/
+            /*hideCard(game_info.judge_info.card1_key,game_info.judge_info.card2_key)
+                        .then(() => {const cards_state = game_info.cards_info.map(card => {
+                            return card.state;
+                        });*/
             break;
 
           case JUDGE_STATE.INCORRECT:
             NODE.GUIDE.textContent = GUIDE_STATE.INCORRECT;
 
-            closeCard(
-              game_info.judge_info.card1_key,
-              game_info.judge_info.card2_key
-            ).then(() => {
+            closeCard(game_info.judge_info.card1_key, game_info.judge_info.card2_key).then(() => {
               NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
               game_info.state_info = GAME_STATE.SELECT_FIRST;
             });
