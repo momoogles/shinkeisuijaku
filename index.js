@@ -220,20 +220,22 @@ const turnCard = card_key => {
 };
 
 const resetGame = () => {
-  for (let i = 0; i < g.game_info.cards_info.length; i++) {
-    NODE.APP.removeChild(g.game_info.cards_info[i].element.div);
+  if (g.game_info.state_info !== JUDGE) {
+    for (let i = 0; i < g.game_info.cards_info.length; i++) {
+      NODE.APP.removeChild(g.game_info.cards_info[i].element.div);
+    }
+
+    g = new Global_info();
+    console.log(g);
+
+    for (let i = 0; i < g.game_info.cards_info.length; i++) {
+      NODE.APP.appendChild(g.game_info.cards_info[i].element.div);
+    }
+
+    NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
+
+    g.game_info.state_info = GAME_STATE.SELECT_FIRST;
+
+    NODE.SDCORE.textContent = g.game_info.score;
   }
-
-  g = new Global_info();
-  console.log(g);
-
-  for (let i = 0; i < g.game_info.cards_info.length; i++) {
-    NODE.APP.appendChild(g.game_info.cards_info[i].element.div);
-  }
-
-  NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
-
-  g.game_info.state_info = GAME_STATE.SELECT_FIRST;
-
-  NODE.SDCORE.textContent = g.game_info.score;
 };
