@@ -5,16 +5,15 @@ body {
   background-color: #ffffff;
   background-size: cover;
   background-attachment: fixed;
-
 }
 
-header{
+header {
   height: 50px;
   min-width: 710px;
   padding: 10px;
   font-size: 20px;
   font-weight: bold;
-  font-family: 'Kosugi Maru', sans-serif;
+  font-family: "Kosugi Maru", sans-serif;
   color: hsl(0, 0%, 100%);
   background-attachment: fixed;
   background-color: rgb(122, 122, 122);
@@ -30,7 +29,7 @@ header .icon {
 
 .content {
   background-color: #ffffff;
-  border: 3px solid rgb(122, 122, 122);;
+  border: 3px solid rgb(122, 122, 122);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -43,6 +42,12 @@ header .icon {
   margin: 40px auto 0;
   width: 600px;
   height: 450px;
+}
+
+#app div {
+  display: inline-block;
+  width: 100px;
+  height: 140px;
 }
 
 #app img {
@@ -58,7 +63,7 @@ header .icon {
   margin: 20px auto 40px;
 }
 
-#btn-main { 
+#btn-main {
   text-align: center;
   text-decoration: none;
   background-color: #e95935;
@@ -69,7 +74,7 @@ header .icon {
   width: 96px;
   border: 2px solid #e95935;
   border-radius: 10px;
-} 
+}
 
 #btn-main:hover {
   text-decoration: none;
@@ -78,7 +83,7 @@ header .icon {
 }
 
 .area-info {
-  font-size: 15px;
+  font-size: 12px;
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -91,26 +96,29 @@ header .icon {
 
 .area-score {
   width: 150px;
-  height: 76px;
-  border-right: 1px solid #e95935
+  padding: 3px;
+  border-right: 1px solid #e95935;
 }
 
 .area-score h2 {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .area-score p {
-  margin: auto 0;
+  display: inline-block;
+  height: 40px;
 }
 
 .area-guide {
   width: 350px;
+  padding: 3px;
 }
 
 .area-guide h2 {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .area-guide p {
-  line-height: 20px;
+  display: inline-block;
+  height: 40px;
 }
