@@ -8,7 +8,8 @@ export const GAME_STATE = {
 
 export const JUDGE_STATE = {
   CORRECT: true,
-  INCORRECT: false
+  INCORRECT: false,
+  CLEAR: -1
 };
 
 export const CARD_STATE = {
@@ -17,22 +18,25 @@ export const CARD_STATE = {
 };
 
 export const GUIDE_STATE = {
-  START: "STARTをクリックしてください",
+  START: "STARTをクリック！",
   SELECT_FIRST: "1枚目を選んでください",
   SELECT_SECOND: "2枚目を選んでください",
   CORRECT: "正解！",
   INCORRECT: "不正解！",
-  CLEAR: "クリア！RESETをクリックしてください",
+  CLEAR: "クリア！RESETをクリック！",
   JUDGE: "あなたはせっかちな人かプログラムの欠陥を見つけようとしてる人ですね！"
 };
 
-export const SCORE = {
-  VALUE: 0
+export const BUTTON_STATE = {
+  START: "START",
+  RESET: "RESET"
 };
 
 export const NODE = {
   APP: document.getElementById("app"),
-  GUIDE: document.getElementById("guide")
+  SDCORE: document.getElementById("score"),
+  GUIDE: document.getElementById("guide"),
+  BUTTON: document.getElementById("btn-main")
 };
 
 export const CARDS_NAME = [

@@ -2,10 +2,10 @@ import {
   GAME_STATE,
   JUDGE_STATE,
   GUIDE_STATE,
-  SCORE,
   NODE,
   CARD_STATE,
-  CARDS_NAME
+  CARDS_NAME,
+  BUTTON_STATE
 } from "./constant.js";
 
 const shuffleCard = card_array => {
@@ -42,7 +42,7 @@ const makeCard = (name, key) => {
 };
 
 const openCard = card_key => {
-  const card_info = game_info.cards_info[card_key];
+  const card_info = g.game_info.cards_info[card_key];
 
   card_info.element.div.replaceChild(card_info.element.img_front, card_info.element.img_back);
 
@@ -51,8 +51,8 @@ const openCard = card_key => {
 
 const closeCard = (key1, key2) => {
   return new Promise(resolve => {
-    const card_info1 = game_info.cards_info[key1];
-    const card_info2 = game_info.cards_info[key2];
+    const card_info1 = g.game_info.cards_info[key1];
+    const card_info2 = g.game_info.cards_info[key2];
 
     setTimeout(() => {
       card_info1.element.div.replaceChild(
@@ -72,70 +72,133 @@ const closeCard = (key1, key2) => {
 };
 
 const judgeCard = (key1, key2) => {
-  console.log(game_info.cards_info[key1], game_info.cards_info[key2]);
-  if (game_info.cards_info[key1].name === game_info.cards_info[key2].name) {
+  if (g.game_info.cards_info[key1].name === g.game_info.cards_info[key2].name) {
     return true;
   }
   return false;
 };
-//ここまではコールバック関数
 
-const cards_name = shuffleCard(CARDS_NAME);
-
-const game_info = {
-  cards_info: cards_name.map((name, key) => ({
-    element: makeCard(name, key),
-    state: CARD_STATE.BACK,
-    name: name
-  })),
-
-  judge_info: {
-    card1_key: null,
-    card2_key: null
-  },
-
-  state_info: GAME_STATE.SELECT_FIRST
+const hideCard = (key1, key2) => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      g.game_info.cards_info[key1].element.img_front.setAttribute(
+        "style",
+        "filter:brightness(50%)"
+      );
+      g.game_info.cards_info[key2].element.img_front.setAttribute(
+        "style",
+        "filter:brightness(50%)"
+      );
+      resolve("成功しました");
+    }, 1000);
+  });
 };
-console.log(game_info);
+//ここまではコールバック関数
+class Global_info {
+  constructor() {
+    this.cards_name = shuffleCard(CARDS_NAME);
 
-for (let i = 0; i < game_info.cards_info.length; i++) {
-  NODE.APP.appendChild(game_info.cards_info[i].element.div);
+    this.game_info = {
+      cards_info: this.cards_name.map((name, key) => ({
+        element: makeCard(name, key),
+        state: CARD_STATE.BACK,
+        name: name
+      })),
+
+      judge_info: {
+        card1_key: null,
+        card2_key: null
+      },
+
+      score: 0,
+
+      restcards: this.cards_name.length,
+
+      state_info: null
+    };
+  }
 }
+
+let g = new Global_info();
+
+for (let i = 0; i < g.game_info.cards_info.length; i++) {
+  NODE.APP.appendChild(g.game_info.cards_info[i].element.div);
+}
+NODE.APP.setAttribute("style", "filter: brightness(50%)");
+
+NODE.GUIDE.textContent = GUIDE_STATE.START;
+
+g.game_info.state_info = GAME_STATE.START;
+
+NODE.BUTTON.textContent = BUTTON_STATE.START;
+NODE.BUTTON.addEventListener("click", () => {
+  startGame();
+});
+
+NODE.SDCORE.textContent = g.game_info.score;
 //ここまでは初期処理
 
+const startGame = () => {
+  NODE.APP.setAttribute("style", "filer: none");
+
+  NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
+
+  g.game_info.state_info = GAME_STATE.SELECT_FIRST;
+
+  NODE.BUTTON.textContent = BUTTON_STATE.RESET;
+  NODE.BUTTON.addEventListener("click", () => {
+    resetGame();
+  });
+};
+
 const turnCard = card_key => {
-  switch (game_info.state_info) {
+  switch (g.game_info.state_info) {
+    case "START":
+      break;
+
     case "SELECT_FIRST":
       openCard(card_key);
-      game_info.judge_info.card1_key = card_key;
+      g.game_info.judge_info.card1_key = card_key;
 
       NODE.GUIDE.textContent = GUIDE_STATE.SELECT_SECOND;
-      game_info.state_info = GAME_STATE.SELECT_SECOND;
+      g.game_info.state_info = GAME_STATE.SELECT_SECOND;
       break;
 
     case "SELECT_SECOND":
-      if (game_info.cards_info[card_key].state === CARD_STATE.BACK) {
+      if (g.game_info.cards_info[card_key].state === CARD_STATE.BACK) {
         openCard(card_key);
-        game_info.judge_info.card2_key = card_key;
-        game_info.state_info = GAME_STATE.JUDGE;
+        g.game_info.judge_info.card2_key = card_key;
+        g.game_info.state_info = GAME_STATE.JUDGE;
 
-        switch (judgeCard(game_info.judge_info.card1_key, game_info.judge_info.card2_key)) {
+        switch (judgeCard(g.game_info.judge_info.card1_key, g.game_info.judge_info.card2_key)) {
           case JUDGE_STATE.CORRECT:
+            g.game_info.score += 2;
+            NODE.SDCORE.textContent = g.game_info.score;
             NODE.GUIDE.textContent = GUIDE_STATE.CORRECT;
 
-            /*hideCard(game_info.judge_info.card1_key,game_info.judge_info.card2_key)
-                        .then(() => {const cards_state = game_info.cards_info.map(card => {
-                            return card.state;
-                        });*/
+            hideCard(g.game_info.judge_info.card1_key, g.game_info.judge_info.card2_key).then(
+              () => {
+                g.game_info.restcards -= 2;
+                if (g.game_info.restcards === 0) {
+                  NODE.GUIDE.textContent = GUIDE_STATE.CLEAR;
+                  g.game_info.state_info = GAME_STATE.CLEAR;
+                } else {
+                  NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
+                  g.game_info.state_info = GAME_STATE.SELECT_FIRST;
+                }
+              }
+            );
             break;
 
           case JUDGE_STATE.INCORRECT:
             NODE.GUIDE.textContent = GUIDE_STATE.INCORRECT;
 
-            closeCard(game_info.judge_info.card1_key, game_info.judge_info.card2_key).then(() => {
-              NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
-              game_info.state_info = GAME_STATE.SELECT_FIRST;
-            });
+            closeCard(g.game_info.judge_info.card1_key, g.game_info.judge_info.card2_key).then(
+              () => {
+                NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
+                g.game_info.state_info = GAME_STATE.SELECT_FIRST;
+              }
+            );
             break;
         }
       }
@@ -145,5 +208,25 @@ const turnCard = card_key => {
       console.log("setTimeoutによる処理が行われるまでは次の処理は行われません");
       NODE.GUIDE.textContent = GUIDE_STATE.JUDGE;
       break;
+
+    case "CREAR":
+      break;
   }
+};
+
+const resetGame = () => {
+  for (let i = 0; i < g.game_info.cards_info.length; i++) {
+    NODE.APP.removeChild(g.game_info.cards_info[i].element.div);
+  }
+
+  g = new Global_info();
+  console.log(g);
+
+  for (let i = 0; i < g.game_info.cards_info.length; i++) {
+    NODE.APP.appendChild(g.game_info.cards_info[i].element.div);
+  }
+
+  NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
+
+  g.game_info.state_info = GAME_STATE.SELECT_FIRST;
 };
