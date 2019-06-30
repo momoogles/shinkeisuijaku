@@ -234,4 +234,6 @@ const resetGame = () => {
   NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
 
   g.game_info.state_info = GAME_STATE.SELECT_FIRST;
+
+  NODE.SDCORE.textContent = g.game_info.score;
 };
