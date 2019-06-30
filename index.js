@@ -22,23 +22,22 @@ const shuffleCard = card_array => {
 };
 
 const makeCard = (name, key) => {
-  const div = document.createElement("div");
   const img_back = document.createElement("img");
-  const img_front = document.createElement("img");
-
   img_back.setAttribute("src", "images/cards/card_back.png");
 
+  const img_front = document.createElement("img");
   img_front.setAttribute("src", `images/cards/card_${name}.png`);
 
+  const div = document.createElement("div");
   div.appendChild(img_back);
   div.addEventListener("click", () => {
     turnCard(key);
   });
 
   return {
-    div: div,
     img_back: img_back,
-    img_front: img_front
+    img_front: img_front,
+    div: div
   };
 };
 
@@ -138,8 +137,7 @@ const turnCard = card_key => {
             ).then(() => {
               const cards_state = game_info.cards_info.map(card => {
                 return card.state;
-              });
-            break;*/
+              });*/
             break;
 
           case JUDGE_STATE.INCORRECT:

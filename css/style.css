@@ -83,7 +83,7 @@ header .icon {
 }
 
 .area-info {
-  font-size: 12px;
+  font-size: 15px;
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -106,6 +106,7 @@ header .icon {
 
 .area-score p {
   display: inline-block;
+  line-height: 20px;
   height: 40px;
 }
 
@@ -120,5 +121,7 @@ header .icon {
 
 .area-guide p {
   display: inline-block;
+  line-height: 20px;
   height: 40px;
+  margin: 0 20px;
 }
