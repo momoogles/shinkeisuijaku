@@ -8,6 +8,8 @@ import {
   BUTTON_STATE
 } from "./constant.js";
 
+//ここからコールバック関数
+
 const shuffleCard = card_array => {
   let ary = [...card_array];
 
@@ -93,7 +95,9 @@ const hideCard = (key1, key2) => {
     }, 1000);
   });
 };
-//ここまではコールバック関数
+
+//ここから初期処理
+
 class Global_info {
   constructor() {
     this.cards_name = shuffleCard(CARDS_NAME);
@@ -136,7 +140,8 @@ NODE.BUTTON.addEventListener("click", () => {
 });
 
 NODE.SDCORE.textContent = g.game_info.score;
-//ここまでは初期処理
+
+//ここからクリック処理
 
 const startGame = () => {
   NODE.APP.setAttribute("style", "filer: none");
