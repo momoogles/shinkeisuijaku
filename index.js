@@ -220,7 +220,7 @@ const turnCard = card_key => {
 };
 
 const resetGame = () => {
-  if (g.game_info.state_info !== JUDGE) {
+  if (g.game_info.state_info !== "JUDGE") {
     for (let i = 0; i < g.game_info.cards_info.length; i++) {
       NODE.APP.removeChild(g.game_info.cards_info[i].element.div);
     }
