@@ -8,7 +8,7 @@ import {
   BUTTON_STATE
 } from "./constant.js";
 
-//ここからコールバック関数
+//ここから処理に使う関数
 
 const shuffleCard = card_array => {
   let ary = [...card_array];
