@@ -52,7 +52,7 @@ const openCard = card_key => {
 };
 
 const closeCard = (card_key1, card_key2) => {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     const card_info1 = g.game_info.cards_info[card_key1];
     const card_info2 = g.game_info.cards_info[card_key2];
 
