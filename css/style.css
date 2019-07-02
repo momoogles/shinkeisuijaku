@@ -16,7 +16,7 @@ header {
   font-family: "Kosugi Maru", sans-serif;
   color: hsl(0, 0%, 100%);
   background-attachment: fixed;
-  background-color: rgb(122, 122, 122);
+  background-color: #e0755a;
 }
 
 header .icon {
@@ -29,7 +29,7 @@ header .icon {
 
 .content {
   background-color: #ffffff;
-  border: 3px solid rgb(122, 122, 122);
+  border: 3px solid #e0755a;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -66,20 +66,20 @@ header .icon {
 #btn-main {
   text-align: center;
   text-decoration: none;
-  background-color: #e95935;
+  background-color: #e0755a;
   color: #ffffff;
   font-size: 24px;
   line-height: 76px;
   height: 76px;
   width: 96px;
-  border: 2px solid #e95935;
+  border: 2px solid #e0755a;
   border-radius: 10px;
 }
 
 #btn-main:hover {
   text-decoration: none;
   background-color: #ffffff;
-  color: #e95935;
+  color: #e0755a;
 }
 
 .area-info {
@@ -89,7 +89,7 @@ header .icon {
   text-align: center;
   width: 446px;
   height: 76px;
-  border: 2px solid #e95935;
+  border: 2px solid #d3c06a;
   border-radius: 10px;
   margin: 0 15px;
 }
@@ -97,7 +97,7 @@ header .icon {
 .area-score {
   width: 150px;
   padding: 3px;
-  border-right: 1px solid #e95935;
+  border-right: 1px solid #d3c06a;
 }
 
 .area-score h2 {

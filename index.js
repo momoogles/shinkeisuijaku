@@ -51,47 +51,55 @@ const openCard = card_key => {
   card_info.state = CARD_STATE.FRONT;
 };
 
-const closeCard = (key1, key2) => {
+const closeCard = (card_key1, card_key2) => {
   return new Promise(resolve => {
-    const card_info1 = g.game_info.cards_info[key1];
-    const card_info2 = g.game_info.cards_info[key2];
+    const card_info1 = g.game_info.cards_info[card_key1];
+    const card_info2 = g.game_info.cards_info[card_key2];
 
     setTimeout(() => {
-      card_info1.element.div.replaceChild(
-        card_info1.element.img_back,
-        card_info1.element.img_front
-      );
-      card_info2.element.div.replaceChild(
-        card_info2.element.img_back,
-        card_info2.element.img_front
-      );
+      if (g.game_info.state_info === "JUDGE") {
+        card_info1.element.div.replaceChild(
+          card_info1.element.img_back,
+          card_info1.element.img_front
+        );
+        card_info2.element.div.replaceChild(
+          card_info2.element.img_back,
+          card_info2.element.img_front
+        );
 
-      card_info1.state = CARD_STATE.BACK;
-      card_info2.state = CARD_STATE.BACK;
-      resolve("成功しました");
+        card_info1.state = CARD_STATE.BACK;
+        card_info2.state = CARD_STATE.BACK;
+        resolve("コールバック関数が問題なく実行されました");
+      } else {
+        reject("コールバック関数が実行される前にstateが変更されました");
+      }
     }, 1000);
   });
 };
 
-const judgeCard = (key1, key2) => {
-  if (g.game_info.cards_info[key1].name === g.game_info.cards_info[key2].name) {
+const judgeCard = (card_key1, card_key2) => {
+  const card_info1 = g.game_info.cards_info[card_key1];
+  const card_info2 = g.game_info.cards_info[card_key2];
+
+  if (card_info1.name === card_info2.name) {
     return true;
   }
   return false;
 };
 
-const hideCard = (key1, key2) => {
-  return new Promise(resolve => {
+const hideCard = (card_key1, card_key2) => {
+  const card_info1 = g.game_info.cards_info[card_key1];
+  const card_info2 = g.game_info.cards_info[card_key2];
+
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      g.game_info.cards_info[key1].element.img_front.setAttribute(
-        "style",
-        "filter:brightness(50%)"
-      );
-      g.game_info.cards_info[key2].element.img_front.setAttribute(
-        "style",
-        "filter:brightness(50%)"
-      );
-      resolve("成功しました");
+      if (g.game_info.state_info === "JUDGE") {
+        card_info1.element.img_front.setAttribute("style", "filter:brightness(50%)");
+        card_info2.element.img_front.setAttribute("style", "filter:brightness(50%)");
+        resolve("コールバック関数が問題なく実行されました");
+      } else {
+        reject("コールバック関数が実行される前にstateが変更されました");
+      }
     }, 1000);
   });
 };
@@ -114,11 +122,11 @@ class Global_info {
         card2_key: null
       },
 
-      score: 0,
+      score_info: 0,
 
-      restcards: this.cards_name.length,
+      state_info: null,
 
-      state_info: null
+      restcards: this.cards_name.length
     };
   }
 }
@@ -129,31 +137,25 @@ for (let i = 0; i < g.game_info.cards_info.length; i++) {
   NODE.APP.appendChild(g.game_info.cards_info[i].element.div);
 }
 NODE.APP.setAttribute("style", "filter: brightness(50%)");
-
 NODE.GUIDE.textContent = GUIDE_STATE.START;
-
-g.game_info.state_info = GAME_STATE.START;
-
 NODE.BUTTON.textContent = BUTTON_STATE.START;
 NODE.BUTTON.addEventListener("click", () => {
   startGame();
 });
+NODE.SDCORE.textContent = g.game_info.score_info;
 
-NODE.SDCORE.textContent = g.game_info.score;
-
+g.game_info.state_info = GAME_STATE.START;
 //ここからクリック処理
 
 const startGame = () => {
   NODE.APP.setAttribute("style", "filer: none");
-
   NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
-
-  g.game_info.state_info = GAME_STATE.SELECT_FIRST;
-
   NODE.BUTTON.textContent = BUTTON_STATE.RESET;
   NODE.BUTTON.addEventListener("click", () => {
     resetGame();
   });
+
+  g.game_info.state_info = GAME_STATE.SELECT_FIRST;
 };
 
 const turnCard = card_key => {
@@ -177,12 +179,12 @@ const turnCard = card_key => {
 
         switch (judgeCard(g.game_info.judge_info.card1_key, g.game_info.judge_info.card2_key)) {
           case JUDGE_STATE.CORRECT:
-            g.game_info.score += 2;
-            NODE.SDCORE.textContent = g.game_info.score;
+            g.game_info.score_info += 2;
+            NODE.SDCORE.textContent = g.game_info.score_info;
             NODE.GUIDE.textContent = GUIDE_STATE.CORRECT;
 
             hideCard(g.game_info.judge_info.card1_key, g.game_info.judge_info.card2_key).then(
-              () => {
+              onFullfilled => {
                 g.game_info.restcards -= 2;
                 if (g.game_info.restcards === 0) {
                   NODE.GUIDE.textContent = GUIDE_STATE.CLEAR;
@@ -191,6 +193,10 @@ const turnCard = card_key => {
                   NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
                   g.game_info.state_info = GAME_STATE.SELECT_FIRST;
                 }
+                console.log(onFullfilled);
+              },
+              onRejected => {
+                console.log(onRejected);
               }
             );
             break;
@@ -199,9 +205,13 @@ const turnCard = card_key => {
             NODE.GUIDE.textContent = GUIDE_STATE.INCORRECT;
 
             closeCard(g.game_info.judge_info.card1_key, g.game_info.judge_info.card2_key).then(
-              () => {
+              onFullfilled => {
                 NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
                 g.game_info.state_info = GAME_STATE.SELECT_FIRST;
+                console.log(onFullfilled);
+              },
+              onRejected => {
+                console.log(onRejected);
               }
             );
             break;
@@ -210,7 +220,7 @@ const turnCard = card_key => {
       break;
 
     case "JUDGE":
-      console.log("setTimeoutによる処理が行われるまでは次の処理は行われません");
+      console.log("setTimeout関数による処理が行われるまでは次の処理は行われません");
       NODE.GUIDE.textContent = GUIDE_STATE.JUDGE;
       break;
 
@@ -231,11 +241,9 @@ const resetGame = () => {
     for (let i = 0; i < g.game_info.cards_info.length; i++) {
       NODE.APP.appendChild(g.game_info.cards_info[i].element.div);
     }
-
     NODE.GUIDE.textContent = GUIDE_STATE.SELECT_FIRST;
+    NODE.SDCORE.textContent = g.game_info.score_info;
 
     g.game_info.state_info = GAME_STATE.SELECT_FIRST;
-
-    NODE.SDCORE.textContent = g.game_info.score;
   }
 };
