@@ -3,45 +3,43 @@
 body {
   color: black;
   background-color: #ffffff;
-  background-size: cover;
-  background-attachment: fixed;
 }
 
 header {
-  height: 50px;
   min-width: 710px;
+  height: 50px;
   padding: 10px;
+  font-family: "Kosugi Maru", sans-serif;
   font-size: 20px;
   font-weight: bold;
-  font-family: "Kosugi Maru", sans-serif;
   color: hsl(0, 0%, 100%);
-  background-attachment: fixed;
   background-color: #e0755a;
 }
 
 header .icon {
-  height: 44px;
   width: 200px;
-  text-align: center;
+  height: 44px;
   border: 3px solid #ffffff;
   border-radius: 10px;
+  text-align: center;
 }
 
 .content {
-  background-color: #ffffff;
-  border: 3px solid #e0755a;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin: 30px auto;
   width: 700px;
   height: 640px;
+  padding: 10px;
+  margin: 30px auto;
+  border: 5px solid #e0755a;
+  border-radius: 10px;
+  background-color: #ffffff;
 }
 
 #app {
-  margin: 40px auto 0;
   width: 600px;
   height: 450px;
+  margin: 40px auto 0;
 }
 
 #app div {
@@ -64,40 +62,40 @@ header .icon {
 }
 
 #btn-main {
-  text-align: center;
-  text-decoration: none;
-  background-color: #e0755a;
-  color: #ffffff;
-  font-size: 24px;
-  line-height: 76px;
-  height: 76px;
   width: 96px;
+  height: 76px;
   border: 2px solid #e0755a;
   border-radius: 10px;
+  font-size: 24px;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  line-height: 76px;
+  background-color: #e0755a;
 }
 
 #btn-main:hover {
   text-decoration: none;
-  background-color: #ffffff;
   color: #e0755a;
+  background-color: #ffffff;
 }
 
 .area-info {
-  font-size: 15px;
   display: flex;
   flex-direction: row;
-  text-align: center;
   width: 446px;
   height: 76px;
   border: 2px solid #d3c06a;
   border-radius: 10px;
   margin: 0 15px;
+  font-size: 15px;
+  text-align: center;
 }
 
 .area-score {
   width: 150px;
-  padding: 3px;
   border-right: 1px solid #d3c06a;
+  padding: 3px;
 }
 
 .area-score h2 {
@@ -121,7 +119,7 @@ header .icon {
 
 .area-guide p {
   display: inline-block;
-  line-height: 20px;
   height: 40px;
   margin: 0 20px;
+  line-height: 20px;
 }
